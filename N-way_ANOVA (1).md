@@ -50,10 +50,6 @@ $$\text{Reject } H_0 \text{ if calculated } F-statistic > \text{critical } F-sta
  
 Before the decision is made to accept or reject the null hypothesis the assumptions need to be checked. See this page on how to check the parametric assumptions in detail - how to check the assumptions for this example will be demonstrated near the end.le will be demonstrated near the end.le will be demonstrated near the end.ple will be demonstrated near the end.ail - how to check the assumptions for this example will be demonstrated near the end.ll be demonstrated near the end.
 
-
-
-
-
 Data Table: DV = Systolic
 
 | Variable | Groups | Sample Size | Sample Means |Sample Variance|
@@ -92,10 +88,9 @@ Let's make sense of all these mathmatical terms. In order to do that, let's star
 | Error (or Residual) | $SS_W$ | $n_{T}-k$ | $MS_W=\frac{SS_W}{n_{T}-k}$ | |
 | Total | $SS_T=SS_B+SS_W$ | $n_{T}-1$ | $T$ |   |
 
-
 Now using the formulas and data from above, the ANOVA table can be filled in - the table below reports type III sum of squares. The sum of square calculations for the individual factors have been omitted since it is a bit out of scope for the topic at hand, an easy to read primer on the types of sum of squares can be found here. Ignore the code part since it's written for R, but the theory behind the different types are explained well.
 
-
+Completed ANOVA Table
 
 | Source of Variation | Sum of Squares (SS) | Degrees of Freedom (df) | Mean Squares {MS} |  F |
 | :------------------ | :-----------: | :--------------------: | :----------------: | :------: |
@@ -105,7 +100,6 @@ Now using the formulas and data from above, the ANOVA table can be filled in - t
 | Drug Disease  | 707.27 | 6 | 117.88 | 1.07|
 | Within Samples | 5080.82 | 46 | 110.45 |  |
 | Total | 9340.16 | 57 | 163.86 |  |86 |  |86 |  |86 |  |
-
 
 In order to tell if the calculated F-statistic is statistically significant, one would look up the F-statistic based on the degress of freedom and alpha level - using statistical software this doesn't need to be done since it'll be provided.
 
@@ -121,7 +115,7 @@ To discuss a 2-factor ANOVA a hypothetcal example will be provided. A researcher
 
 where drug:disease notes the test for an interaction between the two. If the interaction term is significant it indicates that the effect of the type of drug on systolic blood pressure is dependent on the type of disease. To determine which combination of drug and disease type are significantly different than the others, one has to conduct planned comparisons or post-hoc tests.
 
-If the interaction is non-significant, then it is removed from the model and the model is re-run. The reduced model will n`ow be
+If the interaction is non-significant, then it is removed from the model and the model is re-run. The reduced model will now be
 
 `systolic ~ drug + disease`
 
@@ -129,8 +123,6 @@ where one is now testing for the main effects of the independent variables thems
 
 ## 3-Factor ANOVA
 To discuss a 3-factor ANOVA a hypothetical example will be provided. In this example a farmer wants to test the effects of different combinations of fertilizer, the amount of water, and amount of sunlight on crop yield. The farmer decided to bin the amount of water and sunlight into categories and simply label them as low, medium, and high failing to tell everyone else how much each category represents. Thus, this study looks like the following:
-
-
 
 
 |Variable | Categories|
@@ -147,7 +139,7 @@ To discuss a 3-factor ANOVA a hypothetical example will be provided. In this exa
 
 The first analysis will look at the interaction of the 3 factors
 
-`crop_yield ~ fertilizer + water + sunlight + fertilizer:water:sunlight`t`ht
+`crop_yield ~ fertilizer + water + sunlight + fertilizer:water:sunlight`
 
 Crop Yield ANOVA Table
 
@@ -164,8 +156,8 @@ Crop Yield ANOVA Table
 *The important rows are "between samples" and the interaction term row marked with *** and ** respectively. If the between samples F-statistic is significant it means the overal model explains a statistically significant amount of variance which then permits one to look at the interaction term. Coming from the ANOVA framework, not all packages report the model's F-statistic and only report the interaction of main effect F-statistic and associated p-value.*
 
 If the interaction term is significant the next step would be to check the model's assumptions and proceed from there. However, if the interaction term is non-signifcant then the next step would be to break the interaction term down into multiple 2-way interactions. The next model ran would look like:
-`
-crop_yield ~ fertilizer + water + sunlight + fertilizer:water + fertilizer:sunlight + water:sunlig`ht
+
+`crop_yield ~ fertilizer + water + sunlight + fertilizer:water + fertilizer:sunlight + water:sunlight`
 
 The focus is now on the multiple interaction terms.
 
